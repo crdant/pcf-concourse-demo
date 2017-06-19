@@ -15,6 +15,8 @@ resources:
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
+      region_name: {{s3-region}}
+
 
   - name: candidate-release
     type: s3
@@ -24,6 +26,7 @@ resources:
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
+      region_name: {{s3-region}}
 
   - name: final-release
     type: s3
@@ -33,7 +36,8 @@ resources:
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
-
+      region_name: {{s3-region}}
+      
   - name: cf
     type: cf
     source:
@@ -154,10 +158,10 @@ jobs:
       - task: prepare-aws
         file: pcfdemo/ci/tasks/prepare-aws.yml
         params:
-          CF_MANIFEST_HOST_AWS: {{cf-manifest-host-prod-aws}} 
+          CF_MANIFEST_HOST_AWS: {{cf-manifest-host-prod-aws}}
       - put: cf-prod-aws
         params:
-          manifest: prepare-aws/aws/manifest.yml 
+          manifest: prepare-aws/aws/manifest.yml
 
   - name: prepare-gcp
     serial: true
@@ -172,10 +176,10 @@ jobs:
       - task: prepare-gcp
         file: pcfdemo/ci/tasks/prepare-gcp.yml
         params:
-          CF_MANIFEST_HOST_GCP: {{cf-manifest-host-prod-gcp}} 
+          CF_MANIFEST_HOST_GCP: {{cf-manifest-host-prod-gcp}}
       - put: cf-prod-gcp
         params:
-          manifest: prepare-gcp/gcp/manifest.yml 
+          manifest: prepare-gcp/gcp/manifest.yml
 
   - name: prepare-azure
     serial: true
@@ -190,10 +194,10 @@ jobs:
       - task: prepare-azure
         file: pcfdemo/ci/tasks/prepare-azure.yml
         params:
-          CF_MANIFEST_HOST_AZURE: {{cf-manifest-host-prod-azure}} 
+          CF_MANIFEST_HOST_AZURE: {{cf-manifest-host-prod-azure}}
       - put: cf-prod-azure
         params:
-          manifest: prepare-azure/azure/manifest.yml 
+          manifest: prepare-azure/azure/manifest.yml
 
   - name: major
     serial_groups: [ version ]

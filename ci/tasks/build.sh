@@ -61,4 +61,4 @@ cd $inputDir
 
 # Copy war file to concourse output folder
 cd ..
-cp $inputDir/build/$artifactName $outputDir/$artifactName
+cp $inputDir/build/libs/$artifactName $outputDir/$artifactName

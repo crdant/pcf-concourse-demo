@@ -3,7 +3,7 @@ applications:
 - name: pcfdemo
   memory: 1G
   instances: 1
-  path: ./build/pcfdemo.war
+  path: ./build/libs/pcfdemo.war
   host: changeme
   services:
   - myrabbitmq

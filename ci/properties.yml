@@ -27,9 +27,9 @@ cf-password-gcp:
 cf-org-gcp:
 cf-space-gcp:
 cf-manifest-host-prod-gcp:
-cf-api-vmwware:
-cf-username-vmwware:
-cf-password-vmwware:
-cf-org-vmwware:
-cf-space-vmwware:
-cf-manifest-host-prod-vmwware:
+cf-api-wmware:
+cf-username-wmware:
+cf-password-wmware:
+cf-org-wmware:
+cf-space-wmware:
+cf-manifest-host-prod-wmware:

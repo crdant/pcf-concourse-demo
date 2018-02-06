@@ -68,14 +68,14 @@ resources:
       space: ((cf-space-gcp))
       skip_cert_check: true
 
-  - name: cf-prod-vmwware
+  - name: cf-prod-wmware
     type: cf
     source:
-      api: ((cf-api-vmwware))
-      username: ((cf-username-vmwware))
-      password: ((cf-password-vmwware))
-      organization: ((cf-org-vmwware))
-      space: ((cf-space-vmwware))
+      api: ((cf-api-wmware))
+      username: ((cf-username-wmware))
+      password: ((cf-password-wmware))
+      organization: ((cf-org-wmware))
+      space: ((cf-space-wmware))
       skip_cert_check: true
 
 jobs:
@@ -181,7 +181,7 @@ jobs:
         params:
           manifest: prepare-gcp/gcp/manifest.yml
 
-  - name: prepare-vmwware
+  - name: prepare-wmware
     serial: true
     plan:
       - get: candidate-release
@@ -191,13 +191,13 @@ jobs:
         trigger: true
       - get: version
         passed: [ship-it]
-      - task: prepare-vmwware
-        file: pcfdemo/ci/tasks/prepare-vmwware.yml
+      - task: prepare-wmware
+        file: pcfdemo/ci/tasks/prepare-wmware.yml
         params:
-          CF_MANIFEST_HOST_VMWARE: ((cf-manifest-host-prod-vmwware))
-      - put: cf-prod-vmwware
+          CF_MANIFEST_HOST_VMWARE: ((cf-manifest-host-prod-wmware))
+      - put: cf-prod-wmware
         params:
-          manifest: prepare-vmwware/vmwware/manifest.yml
+          manifest: prepare-wmware/wmware/manifest.yml
 
   - name: major
     serial_groups: [ version ]
@@ -215,7 +215,7 @@ jobs:
     serial_groups: [ version ]
     plan:
       - get: version
-        passed: [ prepare-aws, prepare-gcp, prepare-vmwware ]
+        passed: [ prepare-aws, prepare-gcp, prepare-wmware ]
         trigger: true
       - put: version
         params: { bump: patch, pre: rc }

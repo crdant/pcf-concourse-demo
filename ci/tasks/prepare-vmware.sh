@@ -87,8 +87,8 @@ cp ${inputWar} ${outputWar}
 #AWS
 # copy the manifest to the output directory and process it
 echo "VMWARE Host: "$hostnameVMWARE
-outputDirVMWARE=$outputDir/vmwware
-mkdir $outputDir/vmwware
+outputDirVMWARE=$outputDir/wmware
+mkdir $outputDir/wmware
 outputVMWAREManifest=$outputDirVMWARE/manifest.yml
 
 cp ${outputWar} ${outputDirVMWARE}
@@ -104,4 +104,3 @@ sed -i "s|host: .*$|host: $hostnameVMWARE|g" $outputVMWAREManifest
 cat $outputVMWAREManifest
 
 echo "Finished"
-

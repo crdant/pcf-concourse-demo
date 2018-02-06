@@ -16,13 +16,13 @@ inputs:
   - name: version
 
 outputs:
-  - name: prepare-vmwware
+  - name: prepare-wmware
 
 run:
-  path: pcfdemo/ci/tasks/prepare-vmwware.sh
+  path: pcfdemo/ci/tasks/prepare-wmware.sh
   args: [
     --input-dir, candidate-release,
-    --output-dir, prepare-vmwware,
+    --output-dir, prepare-wmware,
     --version-file, version/number,
     --input-manifest, pcfdemo/manifest.yml,
     --artifactId, pcf-demo,

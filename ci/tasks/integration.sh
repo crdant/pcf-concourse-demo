@@ -27,4 +27,4 @@ fi
 
 cd $inputDir
 
-./gradlew clean verify
+./gradlew clean check

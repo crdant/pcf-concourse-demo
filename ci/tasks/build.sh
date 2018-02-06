@@ -57,7 +57,7 @@ version=`cat $versionFile`
 artifactName="${artifactId}-${version}.${packaging}"
 
 cd $inputDir
-./mvnw clean package -Pci -DversionNumber=$version
+./gradlew clean assemble -Pci -DversionNumber=$version
 
 # Copy war file to concourse output folder
 cd ..

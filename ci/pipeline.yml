@@ -3,79 +3,79 @@ resources:
   - name: pcfdemo
     type: git
     source:
-      uri: {{github-uri}}
-      branch: {{github-branch}}
+      uri: ((github-uri))
+      branch: ((github-branch))
 
   - name: version
     type: semver
     source:
-      bucket: {{s3-bucket-version}}
+      bucket: ((s3-bucket-version))
       initial_version: 1.0.0-rc.0
       key: current-version
-      access_key_id: {{s3-access-key-id}}
-      secret_access_key: {{s3-secret-access-key}}
-      endpoint: {{s3-endpoint}}
-      region_name: {{s3-region}}
+      access_key_id: ((s3-access-key-id))
+      secret_access_key: ((s3-secret-access-key))
+      endpoint: ((s3-endpoint))
+      region_name: ((s3-region))
 
 
   - name: candidate-release
     type: s3
     source:
-      bucket: {{s3-bucket-release-candidates}}
+      bucket: ((s3-bucket-release-candidates))
       regexp: pcf-demo-(.*).war
-      access_key_id: {{s3-access-key-id}}
-      secret_access_key: {{s3-secret-access-key}}
-      endpoint: {{s3-endpoint}}
-      region_name: {{s3-region}}
+      access_key_id: ((s3-access-key-id))
+      secret_access_key: ((s3-secret-access-key))
+      endpoint: ((s3-endpoint))
+      region_name: ((s3-region))
 
   - name: final-release
     type: s3
     source:
-      bucket: {{s3-bucket-releases}}
+      bucket: ((s3-bucket-releases))
       regexp: pcf-demo-(.*).war
-      access_key_id: {{s3-access-key-id}}
-      secret_access_key: {{s3-secret-access-key}}
-      endpoint: {{s3-endpoint}}
-      region_name: {{s3-region}}
-      
+      access_key_id: ((s3-access-key-id))
+      secret_access_key: ((s3-secret-access-key))
+      endpoint: ((s3-endpoint))
+      region_name: ((s3-region))
+
   - name: cf
     type: cf
     source:
-      api: {{cf-api}}
-      username: {{cf-username}}
-      password: {{cf-password}}
-      organization: {{cf-org}}
-      space: {{cf-space}}
+      api: ((cf-api))
+      username: ((cf-username))
+      password: ((cf-password))
+      organization: ((cf-org))
+      space: ((cf-space))
       skip_cert_check: true
 
   - name: cf-prod-aws
     type: cf
     source:
-      api: {{cf-api-aws}}
-      username: {{cf-username-aws}}
-      password: {{cf-password-aws}}
-      organization: {{cf-org-aws}}
-      space: {{cf-space-aws}}
+      api: ((cf-api-aws))
+      username: ((cf-username-aws))
+      password: ((cf-password-aws))
+      organization: ((cf-org-aws))
+      space: ((cf-space-aws))
       skip_cert_check: true
 
   - name: cf-prod-gcp
     type: cf
     source:
-      api: {{cf-api-gcp}}
-      username: {{cf-username-gcp}}
-      password: {{cf-password-gcp}}
-      organization: {{cf-org-gcp}}
-      space: {{cf-space-gcp}}
+      api: ((cf-api-gcp))
+      username: ((cf-username-gcp))
+      password: ((cf-password-gcp))
+      organization: ((cf-org-gcp))
+      space: ((cf-space-gcp))
       skip_cert_check: true
 
   - name: cf-prod-vmwware
     type: cf
     source:
-      api: {{cf-api-vmwware}}
-      username: {{cf-username-vmwware}}
-      password: {{cf-password-vmwware}}
-      organization: {{cf-org-vmwware}}
-      space: {{cf-space-vmwware}}
+      api: ((cf-api-vmwware))
+      username: ((cf-username-vmwware))
+      password: ((cf-password-vmwware))
+      organization: ((cf-org-vmwware))
+      space: ((cf-space-vmwware))
       skip_cert_check: true
 
 jobs:
@@ -87,8 +87,8 @@ jobs:
       - task: unit
         file: pcfdemo/ci/tasks/unit.yml
         params: &MAVENPARAMS
-          MAVEN_OPTS: {{maven-opts}}
-          MAVEN_CONFIG: {{maven-config}}
+          MAVEN_OPTS: ((maven-opts))
+          MAVEN_CONFIG: ((maven-config))
 
   - name: build-artifact
     serial_groups: [ version ]
@@ -120,7 +120,7 @@ jobs:
       - task: prepare-integration
         file: pcfdemo/ci/tasks/prepare-integration.yml
         params:
-          CF_MANIFEST_HOST: {{cf-manifest-host}}
+          CF_MANIFEST_HOST: ((cf-manifest-host))
       - put: cf
         params:
           manifest: prepare-integration/manifest.yml
@@ -158,7 +158,7 @@ jobs:
       - task: prepare-aws
         file: pcfdemo/ci/tasks/prepare-aws.yml
         params:
-          CF_MANIFEST_HOST_AWS: {{cf-manifest-host-prod-aws}}
+          CF_MANIFEST_HOST_AWS: ((cf-manifest-host-prod-aws))
       - put: cf-prod-aws
         params:
           manifest: prepare-aws/aws/manifest.yml
@@ -176,7 +176,7 @@ jobs:
       - task: prepare-gcp
         file: pcfdemo/ci/tasks/prepare-gcp.yml
         params:
-          CF_MANIFEST_HOST_GCP: {{cf-manifest-host-prod-gcp}}
+          CF_MANIFEST_HOST_GCP: ((cf-manifest-host-prod-gcp))
       - put: cf-prod-gcp
         params:
           manifest: prepare-gcp/gcp/manifest.yml
@@ -194,7 +194,7 @@ jobs:
       - task: prepare-vmwware
         file: pcfdemo/ci/tasks/prepare-vmwware.yml
         params:
-          CF_MANIFEST_HOST_VMWARE: {{cf-manifest-host-prod-vmwware}}
+          CF_MANIFEST_HOST_VMWARE: ((cf-manifest-host-prod-vmwware))
       - put: cf-prod-vmwware
         params:
           manifest: prepare-vmwware/vmwware/manifest.yml

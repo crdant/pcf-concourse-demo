@@ -1,4 +1,4 @@
-#!/bin/sh
+  #!/bin/sh
 
 inputDir=  outputDir=  versionFile=  artifactId=  packaging=
 
@@ -61,4 +61,4 @@ cd $inputDir
 
 # Copy war file to concourse output folder
 cd ..
-cp $inputDir/target/$artifactName $outputDir/$artifactName
+cp $inputDir/build/$artifactName $outputDir/$artifactName

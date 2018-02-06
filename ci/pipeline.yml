@@ -86,9 +86,6 @@ jobs:
         trigger: true
       - task: unit
         file: pcfdemo/ci/tasks/unit.yml
-        params: &MAVENPARAMS
-          MAVEN_OPTS: ((maven-opts))
-          MAVEN_CONFIG: ((maven-config))
 
   - name: build-artifact
     serial_groups: [ version ]
@@ -100,8 +97,6 @@ jobs:
         params: { pre: rc }
       - task: build
         file: pcfdemo/ci/tasks/build.yml
-        params:
-          <<: *MAVENPARAMS
       - put: candidate-release
         params: { file: build/pcf-demo-*.war }
       - put: version
@@ -126,8 +121,6 @@ jobs:
           manifest: prepare-integration/manifest.yml
       - task: integration
         file: pcfdemo/ci/tasks/integration.yml
-        params:
-          <<: *MAVENPARAMS
 
   - name: ship-it
     serial_groups: [ version ]

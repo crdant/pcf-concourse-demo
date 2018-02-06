@@ -17,11 +17,11 @@ repositories {
 
 dependencies {
     compile group: 'org.springframework.amqp', name: 'spring-rabbit', version:'1.2.0.RELEASE'
-    compile(group: 'org.springframework', name: 'spring-context', version:'3.1.1.RELEASE') {
+    compile(group: 'org.springframework', name: 'spring-context', version:'3.2.18.RELEASE') {
       exclude(module: 'commons-logging')
     }
-    compile group: 'org.springframework', name: 'spring-webmvc', version:'3.1.1.RELEASE'
-    compile group: 'org.springframework', name: 'spring-test', version:'3.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-test', version:'3.2.18.RELEASE'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-spring-service-connector', version:'1.2.0.RELEASE'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-cloudfoundry-connector', version:'1.2.0.RELEASE'
     compile group: 'org.aspectj', name: 'aspectjrt', version:'1.6.10'

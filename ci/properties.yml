@@ -1,6 +1,6 @@
 github-uri:
 github-branch: master
-s3-region: 
+s3-region:
 s3-access-key-id:
 s3-secret-access-key:
 s3-endpoint:
@@ -27,9 +27,9 @@ cf-password-gcp:
 cf-org-gcp:
 cf-space-gcp:
 cf-manifest-host-prod-gcp:
-cf-api-azure:
-cf-username-azure:
-cf-password-azure:
-cf-org-azure:
-cf-space-azure:
-cf-manifest-host-prod-azure:
+cf-api-vmwware:
+cf-username-vmwware:
+cf-password-vmwware:
+cf-org-vmwware:
+cf-space-vmwware:
+cf-manifest-host-prod-vmwware:

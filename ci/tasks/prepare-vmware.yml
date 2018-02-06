@@ -8,7 +8,7 @@ image_resource:
     tag: '8'
 
 params:
-  CF_MANIFEST_HOST_AZURE:
+  CF_MANIFEST_HOST_VMWARE:
 
 inputs:
   - name: pcfdemo
@@ -16,13 +16,13 @@ inputs:
   - name: version
 
 outputs:
-  - name: prepare-azure
+  - name: prepare-vmwware
 
 run:
-  path: pcfdemo/ci/tasks/prepare-azure.sh
+  path: pcfdemo/ci/tasks/prepare-vmwware.sh
   args: [
     --input-dir, candidate-release,
-    --output-dir, prepare-azure,
+    --output-dir, prepare-vmwware,
     --version-file, version/number,
     --input-manifest, pcfdemo/manifest.yml,
     --artifactId, pcf-demo,

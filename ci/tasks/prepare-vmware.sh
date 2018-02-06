@@ -10,7 +10,7 @@ artifactId=  # optional
 packaging= # optional
 
 #
-hostnameAZURE=$CF_MANIFEST_HOST_AZURE # default to env variable from pipeline
+hostnameVMWARE=$CF_MANIFEST_HOST_VMWARE # default to env variable from pipeline
 
 
 while [ $# -gt 0 ]; do
@@ -86,22 +86,22 @@ cp ${inputWar} ${outputWar}
 
 #AWS
 # copy the manifest to the output directory and process it
-echo "AZURE Host: "$hostnameAZURE
-outputDirAZURE=$outputDir/azure
-mkdir $outputDir/azure
-outputAZUREManifest=$outputDirAZURE/manifest.yml
+echo "VMWARE Host: "$hostnameVMWARE
+outputDirVMWARE=$outputDir/vmwware
+mkdir $outputDir/vmwware
+outputVMWAREManifest=$outputDirVMWARE/manifest.yml
 
-cp ${outputWar} ${outputDirAZURE}
+cp ${outputWar} ${outputDirVMWARE}
 
-cp $inputManifest $outputAZUREManifest
+cp $inputManifest $outputVMWAREManifest
 
 # the path in the manifest is always relative to the manifest itself
-sed -i -- "s|path: .*$|path: ${baseName}.war|g" $outputAZUREManifest
+sed -i -- "s|path: .*$|path: ${baseName}.war|g" $outputVMWAREManifest
 
 
-sed -i "s|host: .*$|host: $hostnameAZURE|g" $outputAZUREManifest
+sed -i "s|host: .*$|host: $hostnameVMWARE|g" $outputVMWAREManifest
 
-cat $outputAZUREManifest
+cat $outputVMWAREManifest
 
 echo "Finished"
 

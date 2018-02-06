@@ -87,8 +87,8 @@ cp ${inputWar} ${outputWar}
 #AWS
 # copy the manifest to the output directory and process it
 echo "VMWARE Host: "$hostnameVMWARE
-outputDirVMWARE=$outputDir/wmware
-mkdir $outputDir/wmware
+outputDirVMWARE=$outputDir/vmware
+mkdir $outputDir/vmware
 outputVMWAREManifest=$outputDirVMWARE/manifest.yml
 
 cp ${outputWar} ${outputDirVMWARE}

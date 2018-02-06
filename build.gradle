@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'maven'
 
 group = 'com.pivotal'
-version = '1.0.0-BUILD-SNAPSHOT'
+version = "${version}"
 
 description = "pcf-demo"
 
